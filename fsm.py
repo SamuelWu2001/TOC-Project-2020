@@ -4,7 +4,6 @@ from utils import send_text_message
 from linebot.models import ImageCarouselColumn, URITemplateAction, MessageTemplateAction
 from utils import send_text_message, send_button_message,send_image_message,send_carousel_message,send_carousel_message_leader,send_carousel_message_movie,send_carousel_message_video,send_carousel_message_briefinfo,send_text_button_update
 import requests
-from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
 
 moviedict = {}
@@ -72,10 +71,9 @@ class TocMachine(GraphMachine):
 
     def on_enter_update(self,event):
         global moviedict
-        ua = UserAgent()
         moviedict = {}
         for i in range(1,3):
-            response = requests.get("https://www.vscinemas.com.tw/vsweb/film/coming.aspx?p="+str(i),headers={'User-Agent':ua.random})
+            response = requests.get("https://www.vscinemas.com.tw/vsweb/film/coming.aspx?p="+str(i))
             soup = BeautifulSoup(response.text, "html.parser")
             try:
                 for movie in soup.find('ul',{'class':'movieList'}).find_all('li'):
@@ -97,8 +95,7 @@ class TocMachine(GraphMachine):
         send_text_button_update(event.reply_token,'資料更新完畢')
 
     def on_enter_commingsoon(self, event):
-        ua = UserAgent()
-        response = requests.get("https://www.vscinemas.com.tw/vsweb/film/coming.aspx",headers={'User-Agent':ua.random})
+        response = requests.get("https://www.vscinemas.com.tw/vsweb/film/coming.aspx")
         soup = BeautifulSoup(response.text, "html.parser")
         movielist = []
         for movie in soup.find('ul',{'class':'movieList'}).find_all('li'):
@@ -109,8 +106,7 @@ class TocMachine(GraphMachine):
         send_carousel_message(event.reply_token, movielist)
 
     def on_enter_nowshowing(self, event):
-        ua = UserAgent()
-        response = requests.get("https://www.vscinemas.com.tw/vsweb/film/index.aspx",headers={'User-Agent':ua.random})
+        response = requests.get("https://www.vscinemas.com.tw/vsweb/film/index.aspx")
         soup = BeautifulSoup(response.text, "html.parser")
         movielist = []
         for movie in soup.find('ul',{'class':'movieList'}).find_all('li'):
@@ -121,9 +117,8 @@ class TocMachine(GraphMachine):
         send_carousel_message(event.reply_token, movielist)
 
     def on_enter_leaderboard(self, event):
-        ua = UserAgent()
         index=1
-        response = requests.get("https://www.vscinemas.com.tw/vsweb/film/hot.aspx",headers={'User-Agent':ua.random})
+        response = requests.get("https://www.vscinemas.com.tw/vsweb/film/hot.aspx")
         soup = BeautifulSoup(response.text, "html.parser")
         text = soup.find('section',{'class':"hotArea"})
         imgurl = 'https://www.vscinemas.com.tw/vsweb' + text.find('figure').find('a').find('img').get('src')[2:]
@@ -141,8 +136,7 @@ class TocMachine(GraphMachine):
 
     def on_enter_movie(self, event):
         global movieurl
-        ua = UserAgent()
-        response = requests.get(movieurl,headers={'User-Agent':ua.random})
+        response = requests.get(movieurl)
         soup = BeautifulSoup(response.text, "html.parser")
         table = soup.find('div',{'class':'infoArea'}).find('table')
         info = table.findNext('td').text + table.findNext('td').findNext('td').find('p').text +'\n'+ table.findNext('td').findNext('td').findNext('td').text+ table.findNext('td').findNext('td').findNext('td').findNext('td').find('p').text+'\n'+ table.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text+ table.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text+'\n'+ table.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text+ table.findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').findNext('td').text
@@ -153,8 +147,7 @@ class TocMachine(GraphMachine):
         global movieurl,moviedict
         title = [k for k,v in moviedict.items() if v==movieurl]
         title = title[0]
-        ua = UserAgent()
-        response = requests.get(movieurl,headers={'User-Agent':ua.random})
+        response = requests.get(movieurl)
         soup = BeautifulSoup(response.text, "html.parser")
         videourl = soup.find('div',{'class':'slidesArea'}).find('div').find('iframe').get('src')
         imgurl = 'https://www.vscinemas.com.tw/vsweb'+soup.find('div',{'class':'movieMain'}).find('figure').find('img').get('src')[2:]
@@ -166,8 +159,7 @@ class TocMachine(GraphMachine):
         global movieurl,moviedict
         title = [k for k,v in moviedict.items() if v==movieurl]
         title = title[0]
-        ua = UserAgent()
-        response = requests.get(movieurl,headers={'User-Agent':ua.random})
+        response = requests.get(movieurl)
         soup = BeautifulSoup(response.text, "html.parser")
         infotext = ''
         for info in soup.find('div',{'class':'bbsArticle'}).find_all('p'):
