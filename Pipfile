@@ -14,4 +14,4 @@ beautifulsoup4 = "==4.10.0"
 fake-useragent = "==0.1.11" 
 
 [requires]
-python_version = "3.8"
+python_version = "3.6"
