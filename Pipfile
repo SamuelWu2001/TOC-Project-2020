@@ -10,6 +10,8 @@ python-dotenv = "==0.10.3"
 transitions = "==0.6.9"
 line-bot-sdk = "==1.14.0"
 Flask = "*"
+bs4 = "==0.0.1"
+fake-useragent = ="=0.1.11" 
 
 [requires]
 python_version = "3.8"
