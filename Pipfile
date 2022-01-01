@@ -10,7 +10,7 @@ python-dotenv = "==0.10.3"
 transitions = "==0.6.9"
 line-bot-sdk = "==1.14.0"
 Flask = "*"
-bs4 = "==0.0.1"
+beautifulsoup4 = "==4.10.0"
 fake-useragent = ="=0.1.11" 
 
 [requires]
