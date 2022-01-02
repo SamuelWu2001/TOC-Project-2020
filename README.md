@@ -21,7 +21,7 @@
 5. multi-user(linebot)
 
 ## fsm graph
-
+![](./show-fsm.png)
 ## Reference
 FlexMessage : https://developers.line.biz/flex-simulator/?fbclid=IwAR12Kg6UNiFzwIAAMaorkv3FvuqUJEOmIQe0ciMPX19xUyF_ReJH8fHsHFY
 
