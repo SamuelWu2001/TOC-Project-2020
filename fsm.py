@@ -48,7 +48,7 @@ class TocMachine(Machine):
     def on_enter_welcome(self, event):
         print("I'm entering welcome")
         title = '歡迎光臨威秀影城'
-        text = '您可以直接輸入電影名稱或是由下方功能列表輔助篩選'
+        text = '您可以直接輸入電影名稱或是由下方功能列表輔助篩選,第一次進入請先更新資料'
         btn = [
             MessageTemplateAction(
                 label = '即將上映',
