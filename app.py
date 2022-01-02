@@ -73,61 +73,62 @@ def show_fsm():
 
 def create_machine():
     machine = TocMachine(
-    states=["user", "update", "welcome", "commingsoon","nowshowing","leaderboard","movie",'video','briefinfo'],
-    transitions=[
-        { 
-            "trigger": "advance",
-            "source": ["user","movie","update"],
-            "dest": "welcome",
-            "conditions": "is_going_to_welcome",
-        },
-        {
-            "trigger": "advance",
-            "source": "welcome",
-            "dest": "update",
-            "conditions": "is_going_to_update",
-        },
-        {
-            "trigger": "advance",
-            "source": "welcome",
-            "dest": "commingsoon",
-            "conditions": "is_going_to_commingsoon",
-        },
-        {
-            "trigger": "advance",
-            "source": "welcome",
-            "dest": "nowshowing",
-            "conditions": "is_going_to_nowshowing",
-        },
-        {
-            "trigger": "advance",
-            "source": "welcome",
-            "dest": "leaderboard",
-            "conditions": "is_going_to_leaderboard",
-        },
-        {
-            "trigger": "advance", 
-            "source": ["welcome", "commingsoon","nowshowing","leaderboard","video","briefinfo"], 
-            "dest": "movie",
-            "conditions": "is_going_to_movie",
-        },
-        {
-            "trigger": "advance", 
-            "source": "movie", 
-            "dest": "video",
-            "conditions": "is_going_to_video",
-        },
-        {
-            "trigger": "advance", 
-            "source": "movie", 
-            "dest": "briefinfo",
-            "conditions": "is_going_to_briefinfo",
-        },
-    ],
-    initial="user",
-    auto_transitions=False,
-    #show_conditions=True,
-)
+        states=["user", "update", "welcome", "commingsoon","nowshowing","leaderboard","movie",'video','briefinfo'],
+        transitions=[
+            { 
+                "trigger": "advance",
+                "source": ["user","movie","update"],
+                "dest": "welcome",
+                "conditions": "is_going_to_welcome",
+            },
+            {
+                "trigger": "advance",
+                "source": "welcome",
+                "dest": "update",
+                "conditions": "is_going_to_update",
+            },
+            {
+                "trigger": "advance",
+                "source": "welcome",
+                "dest": "commingsoon",
+                "conditions": "is_going_to_commingsoon",
+            },
+            {
+                "trigger": "advance",
+                "source": "welcome",
+                "dest": "nowshowing",
+                "conditions": "is_going_to_nowshowing",
+            },
+            {
+                "trigger": "advance",
+                "source": "welcome",
+                "dest": "leaderboard",
+                "conditions": "is_going_to_leaderboard",
+            },
+            {
+                "trigger": "advance", 
+                "source": ["welcome", "commingsoon","nowshowing","leaderboard","video","briefinfo"], 
+                "dest": "movie",
+                "conditions": "is_going_to_movie",
+            },
+            {
+                "trigger": "advance", 
+                "source": "movie", 
+                "dest": "video",
+                "conditions": "is_going_to_video",
+            },
+            {
+                "trigger": "advance", 
+                "source": "movie", 
+                "dest": "briefinfo",
+                "conditions": "is_going_to_briefinfo",
+            },
+        ],
+        initial="user",
+        auto_transitions=False,
+        #show_conditions=True,
+    )
+    return machine
 
 
 if __name__ == "__main__":
