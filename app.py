@@ -56,9 +56,9 @@ def webhook_handler():
         if event.source.user_id not in machines:
             machines[event.source.user_id] = create_machine()
 
-        print(f"\nFSM STATE: {machine.state}")
+        print(f"\nFSM STATE: {machines[event.source.user_id].state}")
         print(f"REQUEST BODY: \n{body}")
-        response = machine.advance(event)
+        response = machines[event.source.user_id].advance(event)
         #print(machine.state)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
