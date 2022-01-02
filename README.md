@@ -2,7 +2,7 @@
 ###### tags: `linebot`
 
 ## linebot 主題
-以威秀影城官網("https://www.vscinemas.com.tw/vsweb/index.aspx")做為爬蟲資料來源，讓使用者可以快速瀏覽電影資訊
+以[威秀影城官網]("https://www.vscinemas.com.tw/vsweb/index.aspx")做為爬蟲資料來源，讓使用者可以快速瀏覽電影資訊
 
 ## 功能介紹
 1. 更新資料 &rarr; 將即將上映或正在熱映的電影資訊存下來
