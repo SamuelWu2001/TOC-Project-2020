@@ -61,7 +61,7 @@ def webhook_handler():
         response = machines[event.source.user_id].advance(event)
         #print(machine.state)
         if response == False:
-            send_text_message(event.reply_token, "Not Entering any State")
+            send_text_message(event.reply_token, "請輸入正確指令!")
 
     return "OK"
 
