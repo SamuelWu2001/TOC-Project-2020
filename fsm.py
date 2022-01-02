@@ -1,4 +1,4 @@
-from transitions.extensions import GraphMachine
+from transitions import Machine
 
 from utils import send_text_message
 from linebot.models import ImageCarouselColumn, URITemplateAction, MessageTemplateAction
@@ -10,9 +10,9 @@ from bs4 import BeautifulSoup
 moviedict = {}
 movieurl = ''
 
-class TocMachine(GraphMachine):
+class TocMachine(Machine):
     def __init__(self, **machine_configs):
-        self.machine = GraphMachine(model=self, **machine_configs)
+        self.machine = Machine(model=self, **machine_configs)
 
     def is_going_to_welcome(self, event):
         if event.message.text!='預告片' and event.message.text!='劇情簡介':

@@ -67,7 +67,7 @@ machine = TocMachine(
     ],
     initial="user",
     auto_transitions=False,
-    show_conditions=True,
+    #show_conditions=True,
 )
 
 app = Flask(__name__, static_url_path="")
